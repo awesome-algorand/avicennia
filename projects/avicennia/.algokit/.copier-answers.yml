@@ -1,0 +1,10 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: 1.4.2
+_src_path: gh:algorandfoundation/algokit-python-template
+author_email: michael.feher@algorand.foundation
+author_name: Michael Feher
+contract_name: germinans
+deployment_language: python
+preset_name: production
+project_name: avicennia
+
