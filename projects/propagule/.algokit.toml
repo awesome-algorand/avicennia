@@ -1,0 +1,22 @@
+[algokit]
+min_version = "v2.0.0"
+
+[project]
+type = 'contract'
+name = 'propagule'
+artifacts = 'cacerts'
+
+[project.deploy]
+command = "echo 'Deploying all smart contracts in the project'"
+
+[project.deploy.localnet]
+environment_secrets = []
+
+[project.run]
+# Commands intented for use locally and in CI
+build = { commands = [
+  'bash ./bootstrap.sh',
+], description = 'Build all smart contracts in the project' }
+reset = { commands = [
+  'bash ./reset.sh',
+], description = 'Reset all smart contracts in the project' }
