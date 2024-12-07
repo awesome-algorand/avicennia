@@ -15,6 +15,8 @@ def deploy(
     deployer: algokit_utils.Account,
 ) -> None:
     from smart_contracts.artifacts.germinans.germinans_client import (
+        Certificate,
+        CertificateDetails,
         GerminansClient,
     )
 
@@ -28,9 +30,21 @@ def deploy(
         on_schema_break=algokit_utils.OnSchemaBreak.AppendApp,
         on_update=algokit_utils.OnUpdate.AppendApp,
     )
-    name = "world"
-    response = app_client.hello(name=name)
+
+    response = app_client.initalize(
+        details=CertificateDetails(
+            name="Jammmmm",
+            organization="James",
+            organization_unit="James Brown",
+            country="Funkland",
+            province="Mothership",
+            locality="Right there",
+        ),
+        cert=Certificate(
+            public="---wow", private="hello", revocation_list="takes more"
+        ),
+    )
     logger.info(
-        f"Called hello on {app_spec.contract.name} ({app_client.app_id}) "
-        f"with name={name}, received: {response.return_value}"
+        f"Called initalize on {app_spec.contract.name} ({app_client.app_id}) \n"
+        f"{response.return_value}"
     )

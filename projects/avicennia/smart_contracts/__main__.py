@@ -2,12 +2,14 @@ import logging
 import sys
 from pathlib import Path
 
+from algokit_utils.config import config
 from dotenv import load_dotenv
 
 from smart_contracts._helpers.build import build
 from smart_contracts._helpers.config import contracts
 from smart_contracts._helpers.deploy import deploy
 
+config.configure(debug=True, trace_all=True)
 # Uncomment the following lines to enable auto generation of AVM Debugger compliant sourcemap and simulation trace file.
 # Learn more about using AlgoKit AVM Debugger to debug your TEAL source codes and inspect various kinds of
 # Algorand transactions in atomic groups -> https://github.com/algorandfoundation/algokit-avm-vscode-debugger
