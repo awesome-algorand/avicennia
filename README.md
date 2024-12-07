@@ -5,7 +5,18 @@
 > [!CAUTION]
 > This project is not intended for production use. Use at your own risk.
 
-Extending on the work of Hashicorp's Vault PKI backend, this project aims to provide a Root CA, Intermediary CA and End Entity Certificates for Algorand Blockchain. The Root CA is self-signed and the Intermediary CA is signed by the Root CA. The End Entity Certificates are signed by the Intermediary CA.
+Extending on the work of Hashicorp's Vault PKI backend, this project aims to provide the following components for the Algorand Blockchain.
+
+#### Terms:
+
+- **PKI**: Public Key Infrastructure
+- **CA**: Certificate Authority
+
+#### Components:
+
+- **Root CA**: Primary entity for the source of trust (codename Avicennia Germinans)
+- **Intermediary CA**: Delegated trust by the **RootCA** (codename Propagule)
+- **Validator CA**: Delegated trust by the **IntermediaryCA** (codename Validator)
 
 ### Why Avicennia Germinans?
 
@@ -18,10 +29,13 @@ This project aims to be the first to colonize the Algorand Blockchain with a Cer
 
 A Certificate Authority is a trusted entity that issues digital certificates.
 Certificates are based on the [x.509 standard](https://datatracker.ietf.org/doc/html/rfc5280) and are used in many applications, including TLS/SSL, VPNs, and code signing.
-Following in the footsteps of [Let's Encrypt](https://letsencrypt.org/), this project aims to provide free certificates to the Algorand community.
 
+Following in the footsteps of [Let's Encrypt](https://letsencrypt.org/), this project aims to help secure the internet as a public service.
 
 ## 🎉 Getting Started
+
+Make sure you have the following installed:
+
 
 Bootstrap all the project dependencies by running the following command:
 
