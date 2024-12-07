@@ -3,7 +3,7 @@
 [![GitHub license](https://img.shields.io/github/license/awesome-algorand/avicennia)]()
 
 > [!CAUTION]
-> This project is not intended for production use. Use at your own risk.
+> This project is not intended for production use. It is an exploritory project that is a work in progress. There be dragons! You have been warned!
 
 Extending on the work of Hashicorp's Vault PKI backend, this project aims to provide the following components for the Algorand Blockchain.
 
