@@ -1,22 +1,65 @@
-# avicennia
+# 🌱 Avicennia Germinans
+<a href="https://algokit.io"><img src="https://img.shields.io/badge/Built%20with-algokit-teal.svg"/></a>
+[![GitHub license](https://img.shields.io/github/license/awesome-algorand/avicennia)]()
 
-Welcome to your new AlgoKit project!
+> [!CAUTION]
+> This project is not intended for production use. Use at your own risk.
 
-This is your workspace root. A `workspace` in AlgoKit is an orchestrated collection of standalone projects (backends, smart contracts, frontend apps and etc).
+Extending on the work of Hashicorp's Vault PKI backend, this project aims to provide a Root CA, Intermediary CA and End Entity Certificates for Algorand Blockchain. The Root CA is self-signed and the Intermediary CA is signed by the Root CA. The End Entity Certificates are signed by the Intermediary CA.
 
-By default, `projects_root_path` parameter is set to `projects`. Which instructs AlgoKit CLI to create a new directory under `projects` directory when new project is instantiated via `algokit init` at the root of the workspace.
+## 🎉 Getting Started
 
-## Getting Started
+Bootstrap all of the project dependencies by running the following command:
 
-To get started refer to `README.md` files in respective sub-projects in the `projects` directory.
+```bash
+algokit boostrap all
+algokit project run build
+```
 
-To learn more about algokit, visit [documentation](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/algokit.md).
+## 🏗️ Class Diagram
+```mermaid
+classDiagram
+  CertificateAuthority "1" --o "1" Certificate : Owns
+  CertificateAuthority "1" --o "1" Metrics : Provides
 
-### GitHub Codespaces
+  class CertificateAuthority {
+    <<interface>>
+    +String name
+    +String revokation_list
+    +Certificate cert
+    +Metrics metrics
 
-To get started execute:
+    -initialize(String) bool
+    +sign(SigningRequest) bool
+    +revoke(String) bool
+    +renew(String) bool
+  }
 
-1. `algokit generate devcontainer` - invoking this command from the root of this repository will create a `devcontainer.json` file with all the configuration needed to run this project in a GitHub codespace. [Run the repository inside a codespace](https://docs.github.com/en/codespaces/getting-started/quickstart) to get started.
-2. `algokit init` - invoke this command inside a github codespace to launch an interactive wizard to guide you through the process of creating a new AlgoKit project
+  Germinans "1" --> "*" Propagule : Produces
+  Germinans <|-- CertificateAuthority : Implements
+  class Germinans {
+    +String guid
+  }
 
-Powered by [Copier templates](https://copier.readthedocs.io/en/stable/).
+  Propagule <|-- CertificateAuthority : Implements
+  class Propagule {
+    +int root
+  }
+
+  Validator <|-- CertificateAuthority : Implements
+  Propagule "1" --> "*" Validator : Produces
+  Validator "1" --> "*" Certificate : Produces
+
+  class Validator {
+    +int root
+  }
+  class Certificate{
+    +String public
+    -String private
+  }
+  class Metrics{
+    requests: UInt64
+    issued: UInt64
+    revoked: UInt64
+  }
+```
